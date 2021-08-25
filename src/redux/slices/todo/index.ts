@@ -1,6 +1,7 @@
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
 import { ITodo } from 'interfaces/Todo';
 
+//init state for todo
 const initialState: ITodo[] = [
 	{
 		id: nanoid(),
@@ -16,6 +17,7 @@ const initialState: ITodo[] = [
 	},
 ];
 
+//create reducer for todo
 const todoSlice = createSlice({
 	name: 'todo',
 	initialState,
