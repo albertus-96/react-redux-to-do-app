@@ -1,1 +1,1 @@
-export { addTodo, updateTodo, deleteTodo } from "redux/slices/todo";
+export { addTodo, updateTodo, deleteTodo, toggleTodo } from 'redux/slices/todo';

@@ -1,7 +1,5 @@
 export const Container = ({ children }) => {
-  return (
-    <div className="min-w-screen min-h-screen bg-gray-800 flex items-center justify-center px-5 py-5">
-      {children}
-    </div>
-  );
+	return (
+		<div className="flex items-center justify-center min-h-screen px-5 py-5 bg-gray-800 min-w-screen">{children}</div>
+	);
 };
