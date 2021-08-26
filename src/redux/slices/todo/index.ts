@@ -4,6 +4,7 @@ import { ITodo } from 'interfaces/Todo';
 interface todos {
 	todos: ITodo[];
 	isAscending: boolean;
+	filterBy: 'all' | 'done' | 'ongoing';
 }
 
 //init state for todo
@@ -23,6 +24,7 @@ const initialState: todos = {
 		},
 	],
 	isAscending: true,
+	filterBy: 'all',
 };
 
 //create reducer for todo
@@ -32,7 +34,7 @@ const todoSlice = createSlice({
 	reducers: {
 		addTodo: {
 			reducer: (state, action: PayloadAction<ITodo>) => {
-				return { todos: [...state.todos, action.payload], isAscending: state.isAscending };
+				return { todos: [...state.todos, action.payload], isAscending: state.isAscending, filterBy: state.filterBy };
 			},
 			prepare: (desc: string, deadline: string) => {
 				const id = nanoid();
@@ -44,6 +46,7 @@ const todoSlice = createSlice({
 			return {
 				todos: state.todos.filter((todo) => todo.id.toLowerCase() !== action.payload.id.toLowerCase()),
 				isAscending: state.isAscending,
+				filterBy: state.filterBy,
 			};
 		},
 		updateTodo: (state, action: PayloadAction<ITodo>) => {
@@ -65,9 +68,15 @@ const todoSlice = createSlice({
 				todo.isAscending = action.payload;
 			}
 		},
+		toggleFilterBy: (state, action: PayloadAction<'all' | 'done' | 'ongoing'>) => {
+			const todo = state;
+			if (todo) {
+				todo.filterBy = action.payload;
+			}
+		},
 	},
 });
 
-export const { addTodo, updateTodo, deleteTodo, toggleTodo, toggleSort } = todoSlice.actions;
+export const { addTodo, updateTodo, deleteTodo, toggleTodo, toggleSort, toggleFilterBy } = todoSlice.actions;
 
 export default todoSlice.reducer;

@@ -1,1 +1,1 @@
-export { addTodo, updateTodo, deleteTodo, toggleTodo, toggleSort } from 'redux/slices/todo';
+export { addTodo, updateTodo, deleteTodo, toggleTodo, toggleSort, toggleFilterBy } from 'redux/slices/todo';
