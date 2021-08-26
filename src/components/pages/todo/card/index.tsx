@@ -54,16 +54,18 @@ export const Card = ({ data, handleDelete, handleEdit, handleToggle, ...rest }: 
 						></input>
 					</>
 				) : (
-					<>
+					<div
+						className="flex flex-row items-center w-full cursor-pointer"
+						onClick={(e) => {
+							e.preventDefault();
+							handleToggle(data);
+						}}
+					>
 						{/* display text */}
 						<h3
 							className={`w-4/5 px-2 my-1 leading-none text-left ${
 								data.done ? 'text-gray-400 line-through' : 'text-white'
-							} truncate text-md cursor-pointer`}
-							onClick={(e) => {
-								e.preventDefault();
-								handleToggle(data);
-							}}
+							} truncate text-md`}
 						>
 							{data.desc}
 						</h3>
@@ -72,9 +74,12 @@ export const Card = ({ data, handleDelete, handleEdit, handleToggle, ...rest }: 
 								data.done ? 'text-gray-400 line-through' : 'text-white'
 							} truncate text-sm`}
 						>
-							{new Date(data.deadline).toISOString().slice(0, 16).replace('T', ' ')}
+							{new Date(new Date(data.deadline).getTime() - new Date(data.deadline).getTimezoneOffset() * 60000)
+								.toISOString()
+								.slice(0, 16)
+								.replace('T', ' ')}
 						</h3>
-					</>
+					</div>
 				)}
 
 				{/* edit or save mode */}

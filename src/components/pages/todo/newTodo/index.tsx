@@ -70,7 +70,7 @@ export const AddTodo = ({ handleCreate, ...rest }: addTodoProps) => {
 					<>
 						<div className="flex justify-center w-full">
 							<PlusIcon
-								className="w-6 h-6 cursor-pointer hover:text-indigo-400"
+								className="w-6 h-6 cursor-pointer hover:text-purple-400"
 								onClick={(e) => {
 									e.preventDefault();
 									clear();
